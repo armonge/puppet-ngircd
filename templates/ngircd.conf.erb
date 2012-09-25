@@ -38,7 +38,7 @@
 
 	# Ports on which the server should listen. There may be more than
 	# one port, separated with ",". (Default: 6667)
-	;Ports = 6667, 6668, 6669
+	Ports = <%= @port %>
 
 	# comma seperated list of IP addresses on which the server should
 	# listen. Default values are:
@@ -52,7 +52,7 @@
 
 	# A simple Phrase (<256 chars) if you don't want to use a motd file.
 	# If it is set no MotdFile will be read at all.
-	;MotdPhrase = "Hello world!"
+	MotdPhrase = "Hello world!"
 
 	# User ID under which the server should run; you can use the name
 	# of the user or the numerical ID. ATTENTION: For this to work the
@@ -138,59 +138,7 @@
 	# Optional Mask from which /OPER will be accepted
 	;Mask = *!ident@somewhere.example.com
 
-[Operator]
-	# More [Operator] sections, if you like ...
 
-[Server]
-	# Other servers are configured in [Server] sections. If you
-	# configure a port for the connection, then this ngircd tries to
-	# connect to to the other server on the given port; if not it waits
-	# for the other server to connect.
-	# There may be more than one server block, one for each server.
-	#
-	# Server Groups:
-	# The ngIRCd allows "server groups": You can assign an "ID" to every
-	# server with which you want this ngIRCd to link. If a server of a
-	# group won't answer, the ngIRCd tries to connect to the next server
-	# in the given group. But the ngircd never tries to connect to two
-	# servers with the same group ID.
-
-	# IRC name of the remote server, must match the "Name" variable in
-	# the [Global] section of the other server (when using ngIRCd).
-	;Name = irc2.the.net
-  
-	# Internet host name or IP address of the peer (only required when
-	# this server should establish the connection).
-	;Host = connect-to-host.the.net
-
-	# IP address to use as _source_ address for the connection. if unspecified,
-	# ngircd will let the operating system pick an address.
-	;Bind = 10.0.0.1
-
-	# Port of the server to which the ngIRCd should connect. If you
-	# assign no port the ngIRCd waits for incoming connections.
-	;Port = 6667
-
-	# Own password for the connection. This password has to be configured
-	# as "PeerPassword" on the other server.
-	;MyPassword = MySecret
-
-	# Foreign password for this connection. This password has to be
-	# configured as "MyPassword" on the other server.
-	;PeerPassword = PeerSecret
-
-	# Group of this server (optional)
-	;Group = 123
-
-	# Set the "Passive" option to "yes" if you don't want this ngIRCd to
-	# connect to the configured peer (same as leaving the "Port" variable
-	# empty). The advantage of this option is that you can actually configure
-	# a port an use the IRC command CONNECT more easily to manually connect
-	# this specific server later.
-	;Passive = no
-
-[Server]
-	# More [Server] sections, if you like ...
 
 [Channel]
 	# Pre-defined channels can be configured in [Channel] sections.
@@ -215,7 +163,3 @@
 	# maximum users per channel (mode l)
 	;MaxUsers = 23
 
-[Channel]
-	# More [Channel] sections, if you like ...
-
-# -eof-

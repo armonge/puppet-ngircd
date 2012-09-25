@@ -1,6 +1,7 @@
 class ngircd(
     $servername='localhost',
     $listenaddress='127.0.0.1',
+    $port='6667',
 ){
     package{'ngircd':
         ensure => present,
