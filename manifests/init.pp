@@ -3,15 +3,15 @@ class ngircd(
     $listenaddress='127.0.0.1',
 ){
     package{'ngircd':
-            ensure => present,
+        ensure => present,
     }
     file{'ngircd.conf':
-            path    => '/etc/ngircd.conf',
-            ensure  => file,
-            owner   => root,
-            group   => ngircd,
-            content => template('ngircd/ngircd.conf.erb'),
-            require => Package['ngircd'],
+        path    => '/etc/ngircd.conf',
+        ensure  => file,
+        owner   => root,
+        group   => ngircd,
+        content => template('ngircd/ngircd.conf.erb'),
+        require => Package['ngircd'],
     }
     service{'ngircd':
         ensure    => running,
@@ -19,5 +19,4 @@ class ngircd(
         subscribe => File['ngircd.conf'],
     }
 
-        
 }
