@@ -137,29 +137,3 @@
 
 	# Optional Mask from which /OPER will be accepted
 	;Mask = *!ident@somewhere.example.com
-
-
-
-[Channel]
-	# Pre-defined channels can be configured in [Channel] sections.
-	# Such channels are created by the server when starting up and even
-	# persist when there are no more members left.
-	# Persistent channels are marked with the mode 'P', which can be set
-	# and unset by IRC operators like other modes on the fly.
-	# There may be more than one [Channel] block, one for each channel.
-
-	# Name of the channel
-	;Name = #TheName
-
-	# Topic for this channel
-	;Topic = a great topic
-
-	# Initial channel modes
-	;Modes = tnk
-
-	# initial channel password (mode k)
-	;Key = Secret
-
-	# maximum users per channel (mode l)
-	;MaxUsers = 23
-

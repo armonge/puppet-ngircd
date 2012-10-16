@@ -3,21 +3,29 @@ class ngircd(
     $listenaddress='127.0.0.1',
     $port='6667',
 ){
-    package{'ngircd':
-        ensure => present,
+    $ng_temp_dir = '/tmp'
+    $ng_conf_dir = '/etc'
+
+    class {'stdlib':}
+    class {'ngircd::package':
+        notify  => Class['ngircd::service'],
     }
-    file{'ngircd.conf':
-        path    => '/etc/ngircd.conf',
-        ensure  => file,
-        owner   => root,
-        group   => ngircd,
-        content => template('ngircd/ngircd.conf.erb'),
-        require => Package['ngircd'],
+    class {'ngircd::config':
+      require => Class['ngircd::package'],
+      notify  => Class['ngircd::service'],
     }
-    service{'ngircd':
-        ensure    => running,
-        enable    => true,
-        subscribe => File['ngircd.conf'],
-    }
+
+    class {'ngircd::service':}
+
+  # Allow the end user to establish relationships to the "main" class
+  # and preserve the relationship to the implementation classes through
+  # a transitive relationship to the composite class.
+  anchor{ 'ngircd::begin':
+    before => Class['ngircd::package'],
+    notify => Class['ngircd::service'],
+  }
+  anchor { 'ngircd::end':
+    require => Class['ngircd::service'],
+  }
 
 }
